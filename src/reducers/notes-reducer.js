@@ -6,11 +6,11 @@ const notesReducer = (state, action) => {
             return action.notes;
         case "ADD_NOTE":
             return [
-                ...state,
                 {
                     title: action.title,
                     message: action.message
-                }
+                },
+                ...state
             ];
         default:
             return state;
