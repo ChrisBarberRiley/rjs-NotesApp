@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import NotesContext from "../context/NotesContext";
 
-const Note = ({ note: { title, message }, removeNote }) => {
+const Note = ({ note: { title, message } }) => {
     const { notes, dispatch } = useContext(NotesContext);
-
     return (
         <div
             key={title}
