@@ -1,11 +1,15 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import notesReducer from "./reducers/notes-reducer";
 import "./App.css";
 
 import NotesList from "./components/NotesList";
 import NotesForm from "./components/NotesForm";
 
+import NotesContext from "./context/NotesContext";
+
 const App = () => {
+    const notesContext = useContext(NotesContext);
+
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
     // const [notes, setNotes] = useState([]);
@@ -33,16 +37,18 @@ const App = () => {
         // setNotes(notes.filter(note => note.title !== title));
     };
     return (
-        <div className="App">
-            <NotesForm
-                addNotes={addNotes}
-                title={title}
-                setTitle={setTitle}
-                message={message}
-                setMessage={setMessage}
-            />
-            <NotesList notes={notes} removeNote={removeNote} />
-        </div>
+        <NotesContext.Provider value={{ notes, dispatch }}>
+            <div className="App">
+                <NotesForm
+                    addNotes={addNotes}
+                    title={title}
+                    setTitle={setTitle}
+                    message={message}
+                    setMessage={setMessage}
+                />
+                <NotesList removeNote={removeNote} />
+            </div>
+        </NotesContext.Provider>
     );
 };
 

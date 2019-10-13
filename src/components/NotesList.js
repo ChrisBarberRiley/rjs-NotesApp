@@ -1,8 +1,9 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import NotesContext from "../context/NotesContext";
 import Note from "./Note";
 
-const NotesList = ({ notes, removeNote }) => {
+const NotesList = ({ removeNote }) => {
+    const { notes } = useContext(NotesContext);
     return (
         <>
             {notes.map(n => (
