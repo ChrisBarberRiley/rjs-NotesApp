@@ -3,6 +3,7 @@ import notesReducer from "./reducers/notes-reducer";
 import "./App.css";
 
 import NotesList from "./components/NotesList";
+import NotesForm from "./components/NotesForm";
 
 const App = () => {
     const [title, setTitle] = useState("");
@@ -33,21 +34,13 @@ const App = () => {
     };
     return (
         <div className="App">
-            <form onSubmit={addNotes}>
-                <input
-                    type="text"
-                    placeholder="Title"
-                    onChange={e => setTitle(e.target.value)}
-                    value={title}
-                />
-                <input
-                    type="text"
-                    placeholder="Messgae"
-                    onChange={e => setMessage(e.target.value)}
-                    value={message}
-                />
-                <input type="submit" />
-            </form>
+            <NotesForm
+                addNotes={addNotes}
+                title={title}
+                setTitle={setTitle}
+                message={message}
+                setMessage={setMessage}
+            />
             <NotesList notes={notes} removeNote={removeNote} />
         </div>
     );
