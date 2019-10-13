@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import NotesContext from "../context/NotesContext";
 
-const NotesForm = ({ addNotes, title, setTitle, message, setMessage }) => {
+const NotesForm = () => {
+    const [title, setTitle] = useState("");
+    const [message, setMessage] = useState("");
+
+    const { dispatch } = useContext(NotesContext);
+
+    const addNotes = e => {
+        e.preventDefault();
+        dispatch({ type: "ADD_NOTE", title, message });
+        setTitle("");
+        setMessage("");
+    };
+
     return (
         <div>
             <form onSubmit={addNotes}>
