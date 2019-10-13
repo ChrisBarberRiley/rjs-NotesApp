@@ -2,6 +2,8 @@ import React, { useState, useEffect, useReducer } from "react";
 import notesReducer from "./reducers/notes-reducer";
 import "./App.css";
 
+import NotesList from "./components/NotesList";
+
 const App = () => {
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
@@ -46,14 +48,7 @@ const App = () => {
                 />
                 <input type="submit" />
             </form>
-            {notes.map(note => (
-                <div key={note.title} onClick={() => removeNote(note.title)}>
-                    <br />
-                    Title: {note.title}
-                    <br />
-                    Message: {note.message}
-                </div>
-            ))}
+            <NotesList notes={notes} removeNote={removeNote} />
         </div>
     );
 };
